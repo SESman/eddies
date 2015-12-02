@@ -1,0 +1,67 @@
+---
+title: "Package usage example"
+author: "Yves Le Bras"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Not an Introduction to knitr}
+output: knitr:::html_vignette
+---
+
+# Intro 
+
+The eddies package allow to acess to an eddy database of matlab data files downloaded 
+form <http://datadryad.org/resource/doi:10.5061/dryad.gp40h/1>.
+
+In the southern ocean, cyclonic eddies contain a cold core and rotate in clockwise 
+direction.
+
+# Example
+
+```{r}
+require("rbl")
+require("eddies")
+
+ses <- readRDS("F:/data/ses/post_repro/rbl/large_acc/2011-28.rds")
+ses$stat$day <- floorPOSIXct(ses$stat$time)
+
+# Setup temporal subset
+days <- seq(
+  from = as.POSIXct("2011-11-25", tz = "UTC"), 
+  to = as.POSIXct("2011-12-12", tz = "UTC"), 
+  by = "day"
+  )
+
+# Before using the package make sure that the database path is correct
+# Consider setting this option in your .Rprofile if it is not the case
+options("eddies.path")
+
+# Setup geographical subset (Optional)
+# options("eddies.area") <- list(
+#   lon = range(ses$stat$lon), 
+#   lat = range(ses$stat$lat)
+#   )
+# Here we will use defaults
+options("eddies.area")
+
+# Extract matching eddies from the database
+edd <- eddies(days)
+```
+
+Here is an example of the result
+
+```{r}
+names(edd) # See description of these variables in ?eddies
+
+cnd <- ses$stat$day %in% days
+plot(lat ~ lon, ses$stat[cnd, ], type = "n")
+plot(edd, cex = 0.5, add = TRUE)
+lines(lat ~ lon, ses$stat[cnd, ], lwd = 2)
+```
+
+# Reference
+
+Faghmous JH, Frenger I, Yao Y, Warmka R, Lindell A, Kumar V (2015) *A daily global mesoscale ocean eddy dataset from satellite altimetry*. **Scientific Data 2**: 150028. <http://dx.doi.org/10.1038/sdata.2015.28>
+
+Faghmous JH, Frenger I, Yao Y, Warmka R, Lindell A, Kumar V (2015) *Data from: A daily global mesoscale ocean eddy dataset from satellite altimetry*. **Dryad Digital Repository**. <http://dx.doi.org/10.5061/dryad.gp40h>
+
