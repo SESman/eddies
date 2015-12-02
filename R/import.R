@@ -11,7 +11,9 @@
 #' to subset a geographical region of focus. This behavior can be turned off by
 #' setting this option to \code{NULL}
 #' @examples
+#' \dontrun{
 #' edd <- read_eddy("F:/data/eddies/2010/anticyc_20100101.mat")
+#' }
 read_eddy <- function(x, use.rds = TRUE, rds.save = TRUE, overwrite = FALSE) {
   x_rds <- sub("\\.mat$", "\\.rds", x)
   rds_copied <- file.exists(x_rds)
@@ -47,7 +49,7 @@ read_eddy <- function(x, use.rds = TRUE, rds.save = TRUE, overwrite = FALSE) {
   out
 }
 
-#' Find eddy
+#' Find eddy files
 #'
 #' @param date Date of the eddy
 #' @param type Type of the eddy
@@ -61,8 +63,10 @@ read_eddy <- function(x, use.rds = TRUE, rds.save = TRUE, overwrite = FALSE) {
 #' the software used in the article (matlab) was made available
 #' online at \url{https://github.com/jfaghm/OceanEddies}.
 #' @examples
+#' \dontrun{
 #' days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
 #' select_eddy(day, "both")
+#' }
 select_eddy <- function(date, type = c("both", "cyc", "antcyc"),
                         ext = c("mat", "rds", "any")) {
   if (length(date) > 1) return(lapply(date, select_eddy, type = type, ext = ext))
@@ -75,7 +79,7 @@ select_eddy <- function(date, type = c("both", "cyc", "antcyc"),
   list.files(options()$eddies.path, patt, full.names = TRUE, recursive =  TRUE)
 }
 
-#' Import eddy data
+#' Main function: import eddies data into R
 #'
 #' @inheritParams select_eddy
 #' @param ... Other arguments to be passed to \code{\link{read_eddy}}.
@@ -116,14 +120,16 @@ select_eddy <- function(date, type = c("both", "cyc", "antcyc"),
 #' within the eddy's contour
 #' \item Cyc: the eddy's rotational direction -1 for cyclonic, 1 for anti-cyclonic.
 #' }
-#' @seealso \code{link{select_eddy}}, \code{link{read_eddy}}
+#' @seealso \code{\link{select_eddy}}, \code{\link{read_eddy}}
 #' @references
 #' Faghmous, J. H., Frenger, I., Yao, Y., Warmka, R., Lindell, A. and Kumar, V.
 #' (2015). A daily global mesoscale ocean eddy dataset from satellite altimetry.
 #' Scientific Data 2, 150028.
 #' @examples
+#' \dontrun{
 #' days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
 #' edd <- eddies(days)
+#' }
 eddies <- function(date, type = c("both", "cyc", "antcyc"), ...) {
   stopifnot(require("data.table"))
   fls <- select_eddy(date, type)

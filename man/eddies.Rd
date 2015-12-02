@@ -2,7 +2,7 @@
 % Please edit documentation in R/import.R
 \name{eddies}
 \alias{eddies}
-\title{Import eddy data}
+\title{Main function: import eddies data into R}
 \usage{
 eddies(date, type = c("both", "cyc", "antcyc"), ...)
 }
@@ -14,7 +14,7 @@ eddies(date, type = c("both", "cyc", "antcyc"), ...)
 \item{...}{Other arguments to be passed to \code{\link{read_eddy}}.}
 }
 \description{
-Import eddy data
+Main function: import eddies data into R
 }
 \details{
 \itemize{
@@ -54,8 +54,10 @@ within the eddy's contour
 }
 }
 \examples{
+\dontrun{
 days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
 edd <- eddies(days)
+}
 }
 \references{
 Faghmous, J. H., Frenger, I., Yao, Y., Warmka, R., Lindell, A. and Kumar, V.
@@ -63,6 +65,6 @@ Faghmous, J. H., Frenger, I., Yao, Y., Warmka, R., Lindell, A. and Kumar, V.
 Scientific Data 2, 150028.
 }
 \seealso{
-\code{link{select_eddy}}, \code{link{read_eddy}}
+\code{\link{select_eddy}}, \code{\link{read_eddy}}
 }
 

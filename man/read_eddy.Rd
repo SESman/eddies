@@ -26,6 +26,8 @@ to subset a geographical region of focus. This behavior can be turned off by
 setting this option to \code{NULL}
 }
 \examples{
+\dontrun{
 edd <- read_eddy("F:/data/eddies/2010/anticyc_20100101.mat")
+}
 }
 

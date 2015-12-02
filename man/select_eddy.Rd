@@ -2,7 +2,7 @@
 % Please edit documentation in R/import.R
 \name{select_eddy}
 \alias{select_eddy}
-\title{Find eddy}
+\title{Find eddy files}
 \usage{
 select_eddy(date, type = c("both", "cyc", "antcyc"), ext = c("mat", "rds",
   "any"))
@@ -13,7 +13,7 @@ select_eddy(date, type = c("both", "cyc", "antcyc"), ext = c("mat", "rds",
 \item{type}{Type of the eddy}
 }
 \description{
-Find eddy
+Find eddy files
 }
 \details{
 The function uses the path provided by \code{options("eddies.path")}
@@ -26,7 +26,9 @@ the software used in the article (matlab) was made available
 online at \url{https://github.com/jfaghm/OceanEddies}.
 }
 \examples{
+\dontrun{
 days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
 select_eddy(day, "both")
+}
 }
 

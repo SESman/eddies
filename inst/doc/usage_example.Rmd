@@ -1,11 +1,12 @@
 ---
-title: "Package usage example"
+title: "eddies: Package usage example"
 author: "Yves Le Bras"
 date: "`r Sys.Date()`"
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Not an Introduction to knitr}
 output: knitr:::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Package usage example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Intro 
@@ -17,6 +18,10 @@ In the southern ocean, cyclonic eddies contain a cold core and rotate in clockwi
 direction.
 
 # Example
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(fig.dpi = 96)
+```
 
 ```{r}
 require("rbl")

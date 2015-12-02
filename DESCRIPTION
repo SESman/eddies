@@ -4,6 +4,8 @@ Title: Global Ocean Eddies Database
 Version: 1.0
 Date: 2015-12-01
 Author: Yves LE BRAS
+Depends:
+    R (>= 3.1.1)
 Imports:
   R.matlab,
   data.table,
@@ -14,6 +16,9 @@ Description: Import data from an eddy database of (Matlab .mat files) and
  Data from: A daily global mesoscale ocean eddy dataset from satellite altimetry.
  Dryad Digital Repository. <http://dx.doi.org/10.5061/dryad.gp40h>
 License: MIT + file LICENSE
+URL: https://github.com/SESman/eddies
+BugReports: https://github.com/SESman/eddies/issues
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
+RoxygenNote: 5.0.0

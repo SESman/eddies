@@ -2,7 +2,7 @@
 % Please edit documentation in R/generics.r
 \name{plot.eddy}
 \alias{plot.eddy}
-\title{Plot eddies}
+\title{Plot eddies data}
 \usage{
 \method{plot}{eddy}(x, cnd = NULL, add = FALSE, cex = 1, ...)
 }
@@ -16,7 +16,7 @@
 \item{cex}{the size inflation factor of the features.}
 }
 \description{
-Plot eddies
+Plot eddies data
 }
 \details{
 Blue ellipses indicate cyclonic eddies (rotating clockwise in the
@@ -25,7 +25,9 @@ The thicker lines represent the boundaries of the eddies for the latest
 date available in the input \code{x}.
 }
 \examples{
+\dontrun{
 edd <- eddies(as.POSIXct("2010-01-01"))
 plot(edd, cex = .5)
+}
 }
 
