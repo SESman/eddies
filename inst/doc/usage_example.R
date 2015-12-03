@@ -35,6 +35,6 @@ names(edd) # See description of these variables in ?eddies
 
 cnd <- ses$stat$day %in% days
 plot(lat ~ lon, ses$stat[cnd, ], type = "n")
-plot(edd, cex = 0.5, add = TRUE)
+plot(edd, add = TRUE)
 lines(lat ~ lon, ses$stat[cnd, ], lwd = 2)
 

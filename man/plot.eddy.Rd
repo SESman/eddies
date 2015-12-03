@@ -21,13 +21,15 @@ Plot eddies data
 \details{
 Blue ellipses indicate cyclonic eddies (rotating clockwise in the
 southern hemisphere) while red ellipses indicate anticyclonic eddies.
-The thicker lines represent the boundaries of the eddies for the latest
-date available in the input \code{x}.
+The solid lines represent the boundaries of the eddies for the latest
+date available in the input \code{x}. Points indicate the center of the features
+with their size proportional to the eddy solidity. Line width indicate the mean
+geostrophic speed
 }
 \examples{
 \dontrun{
 edd <- eddies(as.POSIXct("2010-01-01"))
-plot(edd, cex = .5)
+plot(edd)
 }
 }
 

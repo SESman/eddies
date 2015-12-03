@@ -10,15 +10,15 @@ rblist <- function(l, use.names = fill, fill = FALSE)
 #'
 #' @param x0 x coordinate of the center
 #' @param y0 y coordinate of the center
-#' @param major length of the major axe
-#' @param minor length of the minor axe
+#' @param major semi-length of the major axe
+#' @param minor semi-length of the minor axe
 #' @param agl rotation angle  from the x-axis
 #' @param ... other arguments to be passed to \code{\link{lines}}
 #' @export
 #' @keywords internal
 #' @examples
 #' plot(0:1, 0:1)
-#' ellipse(.5, .5, .2, .1, -pi/6)
+#' ellipse(.5, .5, .3, .1, pi/6)
 ellipse <- function(x0, y0, major, minor, agl, n = 50, ...) {
 
   theta <- seq(0, 2 * pi, length = n)

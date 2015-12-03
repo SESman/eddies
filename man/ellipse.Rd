@@ -11,9 +11,9 @@ ellipse(x0, y0, major, minor, agl, n = 50, ...)
 
 \item{y0}{y coordinate of the center}
 
-\item{major}{length of the major axe}
+\item{major}{semi-length of the major axe}
 
-\item{minor}{length of the minor axe}
+\item{minor}{semi-length of the minor axe}
 
 \item{agl}{rotation angle  from the x-axis}
 
@@ -24,7 +24,7 @@ Plot an ellipse to an existing plot
 }
 \examples{
 plot(0:1, 0:1)
-ellipse(.5, .5, .2, .1, -pi/6)
+ellipse(.5, .5, .3, .1, pi/6)
 }
 \keyword{internal}
 
