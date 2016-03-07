@@ -1,3 +1,3 @@
 # Eddies
 
-See example [vignette](http://htmlpreview.github.com/?https://github.com/SESman/eddies/blob/master/inst/doc/usage_example.html)
+See example [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/SESman/eddies/master/inst/doc/usage_example.html)
