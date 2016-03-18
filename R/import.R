@@ -65,7 +65,7 @@ read_eddy <- function(x, use.rds = TRUE, rds.save = TRUE, overwrite = FALSE) {
 #' @examples
 #' \dontrun{
 #' days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
-#' select_eddy(day, "both")
+#' select_eddy(days, "both")
 #' }
 select_eddy <- function(date, type = c("both", "cyc", "antcyc"),
                         ext = c("mat", "rds", "any")) {
@@ -135,7 +135,8 @@ eddies <- function(date, type = c("both", "cyc", "antcyc"), ...) {
   fls <- select_eddy(date, type)
   if (!is.recursive(fls)) fls <- list(fls)
 
-  tmp <- lapply(fls, function(x, ...) lapply(x, read_eddy, ...), ...)
+  cnd <- !sapply(fls, function(x) length(x) == 0)
+  tmp <- lapply(fls[cnd], function(x, ...) lapply(x, read_eddy, ...), ...)
   tmp <- lapply(tmp, function(x) as.data.frame(rbindlist(x)))
 
   out <- rblist(tmp)
