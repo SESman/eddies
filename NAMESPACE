@@ -2,8 +2,11 @@
 
 S3method(plot,eddy)
 export(eddies)
+export(eddies_edges)
 export(ell.coords)
 export(ellipses)
+export(match_loc2eddies)
+export(match_track2eddies)
 export(rblist)
 export(read_eddy)
 export(select_eddy)
