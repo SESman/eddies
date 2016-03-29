@@ -28,7 +28,7 @@ online at \url{https://github.com/jfaghm/OceanEddies}.
 \examples{
 \dontrun{
 days <- as.POSIXct(c("2010-01-01", "2011-01-01"))
-select_eddy(day, "both")
+select_eddy(days, "both")
 }
 }
 

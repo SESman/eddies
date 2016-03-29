@@ -2,7 +2,8 @@
 
 S3method(plot,eddy)
 export(eddies)
-export(ellipse)
+export(ell.coords)
+export(ellipses)
 export(rblist)
 export(read_eddy)
 export(select_eddy)
