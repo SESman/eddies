@@ -37,7 +37,7 @@ plot.eddy <- function(x, cnd = NULL, add = FALSE, cex = 1,
   with(x[is_last, ],
        points(Lon, Lat, cex = unlist(Solidity), pch = 20,
               col = cols[is_last])
-       )
+  )
 
   invisible()
 }

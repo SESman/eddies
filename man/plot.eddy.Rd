@@ -4,7 +4,8 @@
 \alias{plot.eddy}
 \title{Plot eddies data}
 \usage{
-\method{plot}{eddy}(x, cnd = NULL, add = FALSE, cex = 1, ...)
+\method{plot}{eddy}(x, cnd = NULL, add = FALSE, cex = 1, col = c(cyc =
+  "blue", anticyc = "red"), ...)
 }
 \arguments{
 \item{x}{An \code{"eddy"} table such as returned by \code{\link{read_eddy}}.}
