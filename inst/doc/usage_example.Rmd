@@ -7,19 +7,19 @@ vignette: >
   %\VignetteIndexEntry{Package usage example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
----
-
-# Intro 
-
-The eddies package allow to acess to an eddy database of matlab data files downloaded 
-form <http://datadryad.org/resource/doi:10.5061/dryad.gp40h/1>.
-
-In the southern ocean, cyclonic eddies contain a cold core and rotate in clockwise 
-direction.
-
-# Example
-
-```{r, include = FALSE}
+  ---
+  
+  # Intro 
+  
+  The eddies package allow to acess to an eddy database of matlab data files downloaded 
+  form <http://datadryad.org/resource/doi:10.5061/dryad.gp40h/1>.
+  
+  In the southern ocean, cyclonic eddies contain a cold core and rotate in clockwise 
+  direction.
+  
+  # Example
+  
+  ```{r, include = FALSE}
 knitr::opts_chunk$set(fig.dpi = 96)
 ```
 
@@ -35,7 +35,7 @@ days <- seq(
   from = as.POSIXct("2011-11-25", tz = "UTC"), 
   to = as.POSIXct("2011-12-12", tz = "UTC"), 
   by = "day"
-  )
+)
 
 # Before using the package make sure that the database path is correct
 # Consider setting this option in your .Rprofile if it is not the case
@@ -60,9 +60,42 @@ names(edd) # See description of these variables in ?eddies
 
 cnd <- ses$stat$day %in% days
 plot(lat ~ lon, ses$stat[cnd, ], type = "n")
-plot(edd, add = TRUE)
+plot(edd, add = TRUE, col = c(cyc = "blue", anticyc = "red"))
 lines(lat ~ lon, ses$stat[cnd, ], lwd = 2)
 ```
+
+The distance to the edge of the closest eddy can be extracted as follows:
+
+```{r}
+# Pre-allocate columns to target data frame
+edd_nms <- c(
+  "edd.dist",          # Distance to the edge of the closest eddy
+  "no_eddy",           # ID number of the closest eddy
+  "edd.Cyc",           # Type of eddy (-1: cyclonic, 1 anticyclonic)
+  "edd.Lon", "edd.Lat" # Coordinates of eddy's center
+)
+ses$stat[ , edd_nms] <- as.list(rep(NA, length(edd_nms)))
+
+for (d in days) {
+  # Get seal locations at this date
+  cnd <- with(ses$stat, as.numeric(ses$stat$day) == d & !is.na(lon) & !is.na(lat))
+  sum(cnd) > 0 || next
+  locs <- as.data.frame(ses$stat[cnd, c("lon", "lat")])
+  
+  # Get eddies locations at this date
+  edd_dte <- eddies(as.POSIXct(d, origin = "1970-01-01"))
+  ses$stat[cnd, edd_nms] <- match_track2eddies(edd, locs, n = 30)[ , edd_nms]
+}
+
+# Result preview
+cnd <- ses$stat$day %in% days
+plot(lat ~ lon, ses$stat[cnd, ], type = "n")
+plot(edd, add = TRUE, col = c(cyc = "blue", anticyc = "red"))
+# To transform distance in [0, +Inf[ to point size in ]0; 1[
+scinvlogit <- function(x) 1 / (1 + exp(-scale(x)))
+points(lat ~ lon, ses$stat[cnd, ], pch = 20, cex = scinvlogit(-edd.dist))
+```
+
 
 # Reference
 
